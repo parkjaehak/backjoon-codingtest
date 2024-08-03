@@ -1,3 +1,5 @@
+package bronze;
+
 import java.util.Scanner;
 
 public class Gugudan2739 {

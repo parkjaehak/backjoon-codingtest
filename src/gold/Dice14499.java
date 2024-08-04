@@ -6,6 +6,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 1. 지도의 크기와 값을 입력하고 생성한다.
+ * 2. 주사위를 굴린다.
+ *  --> 주사위의 위치를 최신화(벡터이용)
+ *      ==> 우선 위치를 갱신하고 지도판의 범위를 넘어간 경우 갱신된 위치에서 이전으로 되돌린다.
+ *  --> 동서남북 중 하나의 방향으로 이동된 주사위의 값을 최신화(실제 주사위의 값을 이동)
+ *      ==> 주사위를 굴릴때에는 남북/동서로 나누어 계산
+ * 3. 지도와 주사위 바닥면의 상호작용을 통해 지도와 주사위 바닥면의 값을 갱신한다.
+ */
+
 public class Dice14499 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
@@ -14,7 +24,7 @@ public class Dice14499 {
     static int TOP = 0, BOTTOM = 1, FRONT = 2, REAR = 3, LEFT = 4, RIGHT = 5;
 
     static int[][] map;
-    static int[] dice = new int[6];
+    static int[] dice = new int[6]; // 0으로 모든 면 초기화
 
     //주사위 이동방향: 동, 서, 북, 남
     static int[] dx = {0, 0, -1, 1}; //x값은 세로 = 상하방향, 주사위 판을 위에서부터 아래로 저장하기 때문에 위로 올라가려면 북으로 갈때 -1 해야 함
@@ -38,7 +48,6 @@ public class Dice14499 {
             }
         }
 
-
         st = new StringTokenizer(br.readLine());
         for (int k = 0; k < K; k++) {
             int move = Integer.parseInt(st.nextToken());
@@ -46,9 +55,10 @@ public class Dice14499 {
             X += dx[move - 1];
             Y += dy[move - 1];
             if (X < 0 || X >= N || Y < 0 || Y >= M) {
+                X -= dx[move - 1];
+                Y -= dy[move - 1];
                 continue;
             }
-
 
             // 2. 주사위 굴리기(방향)
             switch (move) {

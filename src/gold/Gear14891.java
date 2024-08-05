@@ -44,7 +44,7 @@ public class Gear14891 {
         int K = Integer.parseInt(br.readLine()); //회전 횟수
         for (int i = 0; i < K; i++) {
             st = new StringTokenizer(br.readLine());
-            int gearNumber = Integer.parseInt(st.nextToken()) - 1; //회전시킨 톱니바퀴 번호(가장 왼쪽부터 1, 2, 3, 4)
+            int gearNumber = Integer.parseInt(st.nextToken()) - 1; //회전시킨 톱니바퀴 번호(가장 왼쪽부터 0,1,2,3)
             int direction = Integer.parseInt(st.nextToken()); //방향 (1: 시계, -1: 반시계)
 
             //2. 입력받은 값과 조건에 부합시키며 회전을 진행한다. (돌릴 톱니바퀴, 방향, 트리거: 0양쪽, 1오른쪽, -1왼쪽으로 이동)
@@ -63,40 +63,25 @@ public class Gear14891 {
         if (trigger == 0) {
             if (leftGear >= 0) {
                 if (gears[leftGear][2] != gears[currentGear][6]) {  //4.기어가 존재한다면 내 양 옆 기어와 맞물리는 부분이 일치하는지 확인한다.
-                    if (direction == 1) { //5.맞불리는 부분이 일치하지 않는 경우, 내 옆의 기어를 나와는 반대방향으로 회전시킨다.
-                        rotate(leftGear, -1, -1);
-                    } else {
-                        rotate(leftGear, 1, -1);
-                    }
+                   //5.맞불리는 부분이 일치하지 않는 경우, 내 옆의 기어를 나와는 반대방향으로 회전시킨다.
+                    rotate(leftGear, direction*-1, -1);
                 }
             }
             if (rightGear <= 3) {
                 if (gears[rightGear][6] != gears[currentGear][2]) {
-                    if (direction == 1) { //반대인 방향으로 회전시킨다
-                        rotate(rightGear, -1, 1);
-                    } else {
-                        rotate(rightGear, 1, 1);
-                    }
+                    rotate(rightGear, direction*-1, 1);
                 }
             }
         } else if (trigger == -1) {
             if (leftGear >= 0) { //움직일 수 있는지 체크
                 if (gears[leftGear][2] != gears[currentGear][6]) { //왼쪽 기어와 현재 기어의 맞물리는 극이 다른 경우
-                    if (direction == 1) { //반대인 방향으로 회전시킨다
-                        rotate(leftGear, -1, -1);
-                    } else {
-                        rotate(leftGear, 1, -1);
-                    }
+                    rotate(leftGear, direction*-1, -1);
                 }
             }
         } else if (trigger == 1) {
             if (rightGear <= 3) {
                 if (gears[rightGear][6] != gears[currentGear][2]) {
-                    if (direction == 1) { //반대인 방향으로 회전시킨다
-                        rotate(rightGear, -1, 1);
-                    } else {
-                        rotate(rightGear, 1, 1);
-                    }
+                    rotate(rightGear, direction*-1, 1);
                 }
             }
         }

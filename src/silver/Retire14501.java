@@ -1,18 +1,30 @@
+package silver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-
-public class Main {
-
+/**
+ * 상담가능한 일 수 : N
+ * 상담하는데 걸리는 일 수 : T
+ * 상담 가격 : P
+ *
+ * 최대 수익을 구하자
+ *
+ *
+ * 규칙
+ *  --> 현재 날짜 + T 일째에 상담을 잡을 수 있다.
+ *  --> 남은 일짜 < 상담기간, 해당 날짜에 시작하는 상담은 할 수 없다.
+ */
+public class Retire14501 {
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static int N;
     static int[][] table;
     static int max = Integer.MIN_VALUE;
-    public static void main(String[] args) throws IOException {
+
+    public Retire14501() throws IOException {
 
         N = Integer.parseInt(bf.readLine()); //남은 상담 가능일 수
         table = new int[2][N + 1]; //[0][] : 상담기간, [1][] : 상담비용
@@ -47,5 +59,4 @@ public class Main {
         // --> 상담기간이 길어서 오늘 상담을 하지 못하거나 이미 오늘 상담을 진행한 경우 내일 상담으로 넘어간다.
         consult(today + 1, income);
     }
-
 }

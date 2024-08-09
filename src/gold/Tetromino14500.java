@@ -1,12 +1,17 @@
-
+package gold;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.StringTokenizer;
 
-
-public class Main {
+/**
+ * N,M은 5000보다 작다
+ * 각 칸의 정수는 1000을 넘지 않는 자연수
+ * <p>
+ * 테트로미노가 가린 네 칸의 합 중 최댓값 출력
+ */
+public class Tetromino14500 {
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
 
@@ -17,8 +22,7 @@ public class Main {
     static int[] dx = {1, 0, -1, 0};
     static int max = Integer.MIN_VALUE;
 
-
-    public static void main(String[] args) throws IOException {
+    public Tetromino14500() throws IOException {
         st = new StringTokenizer(bf.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());

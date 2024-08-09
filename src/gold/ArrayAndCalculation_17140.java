@@ -1,11 +1,29 @@
+package gold;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * 3 * 3 배열
+ * R연산 : 행 >= 열
+ * C연산 : 행 < 열
+ * <p>
+ * 1. 수의 등장 횟수 오름차순 : 1 -> 2
+ * 2. 수의 크기 오름차순 : 1 -> 2
+ * <p>
+ * [수] -> [수, 횟수]
+ * 가장 큰 열, 행 기준 나머지 열, 행은 0으로 채운다.
+ * <p>
+ * r : row
+ * c : column
+ * k : 값
+ * <p>
+ * A[r][c] = k, r,c에 k가 되기 위한 연산의 최소 시간 : 1초마다 배열 연산
+ */
+public class ArrayAndCalculation_17140 {
 
-public class Main {
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static int R = 0, C = 0, K = 0;
@@ -13,8 +31,7 @@ public class Main {
 
     static int rowCount = 3, columnCount = 3;
 
-
-    public static void main(String[] args) throws IOException {
+    public ArrayAndCalculation_17140() throws IOException {
         st = new StringTokenizer(bf.readLine());
         R = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
@@ -44,7 +61,6 @@ public class Main {
             System.out.println(-1);
         }
     }
-
     public static void operation() {
 
         //R연산을 진행한다.
@@ -78,14 +94,7 @@ public class Main {
             }
         }
 
-        // 모든 key-value 쌍 집합을 꺼내어 Info객체를 생성 후 우선순위 큐에 저장한다.
-        Set<Map.Entry<Integer, Integer>> entrySet = map.entrySet();
-        for (Map.Entry<Integer, Integer> entry : entrySet) {
-            Integer key = entry.getKey();
-            Integer value = entry.getValue();
-            // 우선순위 큐에서는 지정한 규칙에 따라 key-value 객체를 정렬한다.
-            info.add(new Info(key, value));
-        }
+        map.forEach((k, v) -> info.add(new Info(k, v)));
 
         int i = 1;
         while (!info.isEmpty()) {
@@ -102,7 +111,6 @@ public class Main {
             A[row][i++] = 0;
         }
     }
-
     public static void operationC(int column) {
         PriorityQueue<Info> info = new PriorityQueue<>();
         Map<Integer, Integer> map = new HashMap<>();
@@ -121,13 +129,7 @@ public class Main {
         }
 
         // 모든 key-value 쌍 집합을 꺼내어 Info객체를 생성 후 우선순위 큐에 저장한다.
-        Set<Map.Entry<Integer, Integer>> entrySet = map.entrySet();
-        for (Map.Entry<Integer, Integer> entry : entrySet) {
-            Integer key = entry.getKey();
-            Integer value = entry.getValue();
-            // 우선순위 큐에서는 지정한 규칙에 따라 key-value 객체를 정렬한다.
-            info.add(new Info(key, value));
-        }
+        map.forEach((k, v) -> info.add(new Info(k, v)));
 
         int i = 1;
         while (!info.isEmpty()) {

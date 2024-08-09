@@ -1,10 +1,16 @@
+package gold;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
-public class Main {
+/**
+ * CCTV들을 리스트에 저장하여 dfs를 통해 모든 경우의 수에서 사각지대가 최소가 되는 경우를 구한다.
+ */
+public class Watch15683 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static int[][] office;
@@ -26,7 +32,7 @@ public class Main {
     };
 
 
-    public static void main(String[] args) throws IOException {
+    public Watch15683() throws IOException {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
@@ -97,7 +103,7 @@ public class Main {
                     // 감시가능한 곳이 아직 감시되지 않은 공간인 경우에는 감시한다.
                     count++;
                 }
-                office[nextR][nextC] += flag; //감시한 곳을 표시할때는 -1을 해주고, 해제할때는 +1을 해준다.
+                office[nextR][nextC] += flag; //감시한 곳을 지정할때는 7을 할당하고 해제할 때는 다시 0을 할당한다.
             }
         }
         return count;

@@ -1,9 +1,7 @@
-import silver.Operator14888;
-
-import java.io.IOException;
+import silver.Z1074;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Operator14888 operator14888 = new Operator14888();
+    public static void main(String[] args) {
+
     }
 }

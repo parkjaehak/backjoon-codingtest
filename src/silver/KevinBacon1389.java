@@ -42,6 +42,7 @@ public class KevinBacon1389 {
         System.out.println(minUserIdx);
     }
 
+    //BFS는 레벨 단위로 노드를 탐색하므로 각 노드까지의 최단 경로를 자연스럽게 계산할 수 있다.
     static void find(int userIdx) {
         Queue<Info> queue = new LinkedList<>();
         boolean[] check = new boolean[N + 1];
